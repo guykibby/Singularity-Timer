@@ -42,3 +42,9 @@
   /* background-color: #61dafb; */
   border: 1px solid white;
 }
+
+.button {
+  margin: 2rem;
+  padding: 1rem;
+  font-size: 1em;
+}
