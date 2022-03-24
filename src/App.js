@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Timer from "./timer.js";
-import start from "./timer.js";
 
 function App() {
   return (
