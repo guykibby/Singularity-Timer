@@ -7,13 +7,13 @@ const TimeDisplay = ({ time }) => {
 };
 
 let initTimeTill = 23575724;
-let timeNow = Date.now();
-let state = 0;
+// let timeNow = Date.now();
+// let state = 0;
 
-const calcTime = (func) => {
-  let x = Math.floor(initTimeTill + (timeNow - Date.now()) / 1000);
-  func(x);
-};
+// const calcTime = (func) => {
+//   let x = Math.floor(initTimeTill + (timeNow - Date.now()) / 1000);
+//   func(x);
+// };
 
 // const delaySwitch = (func) => {
 //   setTimeout(func, 10000);
@@ -23,11 +23,9 @@ const Timer = () => {
   console.log("buggy");
 
   const [timeTill, whatTime] = useState(initTimeTill);
-  // const [state, whatState] = useState(0);
+  const [state, whatState] = useState(0);
 
-  if (state % 2 === 0) {
-    let runTimer = setInterval(calcTime(whatTime), 100);
-  }
+  // const [state, whatState] = useState(0);
 
   // const switchState = () => {
   //   initTimeTill = timeTill;
