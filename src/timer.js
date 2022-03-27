@@ -1,24 +1,53 @@
 import React from "react";
 import { useState } from "react";
 // import DoomsDelayButton from "./Components/DoomsDelayButton.js";
-import calcTime from "./Utils/calcTime.js";
+// import calcTime from "./Utils/calcTime.js";
 
 const TimeDisplay = ({ time }) => {
   return <div id="timer">{time}</div>;
 };
 
-// const delaySwitch = (func) => {
-//   setTimeout(func, 10000);
-// };
+let state = "running";
+
+const switchState = () => {
+  if (state !== "running") {
+    prevTimeTill = newTimeTill;
+    startTime = Date.now();
+    state = "running";
+    console.log("running");
+  } else {
+    state = "delay";
+    console.log("delay");
+    setTimeout(switchState, 10000);
+  }
+  // calcTime();
+};
+
+let prevTimeTill = 1000000;
+let startTime = Date.now();
+let newTimeTill = 0;
+
+const calcTime = () => {
+  if (state === "running") {
+    newTimeTill = prevTimeTill - (Date.now() - startTime) / 1000;
+  }
+  // console.log(newTimeTill);
+};
+
+// setInterval(calcTime, 1000);
 
 const Timer = () => {
   console.log("buggy");
 
-  const [timeTill, whatTime] = useState(0);
+  const [timeTill, whatTime] = useState(prevTimeTill);
 
-  // setInterval(calcTime(whatTime), 1000);
+  const checkTime = () => {
+    calcTime();
+    whatTime(Math.floor(newTimeTill));
+  };
 
-  // const [state, whatState] = useState(0);
+  setInterval(checkTime, 100);
+  // const [theState, whatState] = useState(0);
 
   // const switchState = () => {
   //   let newState = state + 1;
@@ -53,6 +82,9 @@ const Timer = () => {
       <h1>Goodbye World</h1>
       <h3>Seconds until the singularity:</h3>
       <TimeDisplay time={timeTill} />
+      <button className="button" onClick={switchState}>
+        DOOMSDELAY
+      </button>
       {/* <DoomsDelayButton onclick={switchState} /> */}
     </>
   );
